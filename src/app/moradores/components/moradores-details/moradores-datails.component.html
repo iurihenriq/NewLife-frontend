@@ -1,0 +1,81 @@
+    <mat-toolbar>
+      <span>{{ (isEdit?'Atualizar':'Adicionar') }} morador</span>
+    </mat-toolbar>
+ <form [formGroup]="moradoresForm">
+
+  <div class="inputs apartamento-morador">
+ <mat-form-field appearance="outline">
+  <mat-label>Apartamento</mat-label>
+  <mat-select disableOptionCentering formControlName="apartamento" [disabled]="isEdit">
+    <mat-option *ngFor="let apartamentos of aptoList" [value]="apartamentos.idApartamento">
+      {{ apartamentos.numero }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label> Morador </mat-label>
+  <input matInput type="text" formControlName="nome" />
+</mat-form-field>
+</div>
+
+<div class="inputs telefone">
+<mat-form-field appearance="outline">
+  <mat-label> RG </mat-label>
+  <input matInput type="text" formControlName="rg" mask="00.000.000-0"/>
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label> CPF </mat-label>
+  <input matInput type="text" formControlName="cpf" mask="000.000.000-00"/>
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label> Telefone principal </mat-label>
+  <input matInput type="text" formControlName="telefonePrincipal" mask="(00) 00000-0000"/>
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label> Telefone secundario </mat-label>
+  <input matInput type="text" formControlName="telefoneSecundario" mask="(00) 00000-0000"/>
+</mat-form-field>
+</div>
+
+<div class="email inputs">
+<mat-form-field appearance="outline">
+  <mat-label> Email </mat-label>
+  <input matInput type="text" formControlName="email" />
+</mat-form-field>
+</div>
+
+<div class="inputs contatoDeEmergencia">
+<mat-form-field appearance="outline">
+  <mat-label> Contato de Emergência </mat-label>
+  <input matInput type="text" formControlName="nomeContatoEmergencial" />
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label> Telefone </mat-label>
+  <input matInput type="text" formControlName="telefoneContatoEmergencial" mask="(00) 00000-0000"/>
+</mat-form-field>
+</div>
+
+<div class="observacoes">
+<mat-form-field class="example-full-width"appearance="outline">
+  <mat-label> Observações </mat-label>
+  <input matInput type="text" formControlName="observacoes" />
+</mat-form-field>
+</div>
+
+<div class="botoes">
+  <button
+  mat-raised-button id="teste"
+  color="primary"
+  (click)="!isEdit ? create() : save()"
+  [disabled]="!moradoresForm.valid"
+>
+  {{ (isEdit?'Atualizar':'Salvar') }}
+</button>
+<button mat-raised-button color="warn" routerLink="..">Cancelar</button>
+</div>
+</form>

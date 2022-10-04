@@ -1,0 +1,52 @@
+@import "src/variables.scss";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  height: 93.4%;
+  background-image: url('/assets/background.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-direction: column;
+}
+
+.card-principal {
+  margin-top: 80px;
+  width: 50%;
+  -webkit-box-shadow: 2px 2px 8px 5px #2222227d; 
+  box-shadow: 2px 2px 8px 5px #2222227d;
+}
+
+mat-card {
+  padding: 30px 40px;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-top: 5px;
+  margin-bottom: 38px;
+}
+
+.tab button{
+  width: 100%;
+  text-transform: uppercase;
+  padding: 15px 20px;
+  border: none;
+  background: #fff;
+  border-bottom: 3px solid #eaf2ff;
+  border-radius: 10px 10px 0 0;
+  transition-duration: 0.5s;
+}
+
+.tab button:focus{
+  border-bottom: 3px solid $primary;
+  background: #eaf2ff;
+}
+
+.tab button:hover {
+  background: #eaf2ff;
+}

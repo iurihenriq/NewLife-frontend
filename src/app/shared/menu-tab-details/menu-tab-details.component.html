@@ -1,0 +1,12 @@
+<div class="container">
+  <mat-card class="card-principal">
+    <div class="tab" [style.display]="isVisible ? 'flex' : 'none'">
+      <button routerLink = "/moradores/new">Moradores</button>
+      <button routerLink = "/funcionarios/new">Funcionarios</button>
+      <button routerLink = "/veiculos/new">Veiculos</button>
+      <button routerLink = "/visitantes/new">Visitantes</button>
+    </div>
+
+    <router-outlet></router-outlet>
+  </mat-card>
+</div>

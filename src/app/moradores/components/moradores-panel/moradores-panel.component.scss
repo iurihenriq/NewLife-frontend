@@ -1,0 +1,74 @@
+@import "src/variables.scss";
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+body {
+  height: 100vh;
+}
+
+th {
+  background-color: $primary;
+  color: #fff;
+}
+
+.botoes {
+  display: flex;
+  gap: 20px;
+}
+
+
+.card-principal {
+  margin-top: 80px;
+  width: 70%;
+  -webkit-box-shadow: 2px 2px 8px 5px #2222227d; 
+  box-shadow: 2px 2px 8px 5px #2222227d;
+}
+
+th.mat-header-cell:first-of-type, th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-cell:first-of-type  {
+  padding: 0;
+}
+
+td, .table-header {
+  text-align: center;
+}
+
+td:nth-child(even){
+  background-color: #e0ecff;
+}
+
+.th-nome, .th-rg, .th-cpf, .th-email, .th-telefonePrincipal, .th-telefoneSecundario, .th-contatoEmergencial, .th-telefoneEmergencial, .th-observacoes {
+  width: 8%;
+}
+
+.th-apartamento,.th-acoes {
+  width: 5%;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  height: 93.4%;
+  background-image: url('/assets/background.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-direction: column;
+}
+
+.procurar-cadastrar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.paginator {
+  margin-top: 4px;
+  display: flex;
+  justify-content: center;
+}
