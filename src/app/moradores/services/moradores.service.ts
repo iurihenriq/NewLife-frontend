@@ -44,4 +44,10 @@ export class MoradoresService {
     if(query) params = params.append('query', query);
     return this.http.get<any>(`${environment.apiUrl}/moradores/allList`, {params})
   }
+
+  importMorador(file: any){
+    const formData = new FormData();
+    formData.append('file',file);
+    return this.http.post(`${environment.apiUrl}/moradores/import`,formData);
+  }
 }

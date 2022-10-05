@@ -21,6 +21,10 @@ const EXCEL_EXTENSION = '.xlsx';
 })
 export class MoradoresPanelComponent implements OnInit {
 
+  fileForm = this.form.group({
+    file: ['',Validators.required],
+  })
+
   constructor(
     private service: MoradoresService,
     private form: FormBuilder,
@@ -100,7 +104,7 @@ export class MoradoresPanelComponent implements OnInit {
   }
 
   openDialog(id : number) {
-    const dialogRef = this.dialog.open(DialogComponent, {data: "Deseja Excluir o Funcionario?"});
+    const dialogRef = this.dialog.open(DialogComponent, {data: "Deseja Excluir o Morador?"});
     dialogRef.afterClosed().subscribe(result => {
       if(result){
         this.delete(id);
@@ -157,15 +161,13 @@ export class MoradoresPanelComponent implements OnInit {
   }
 
   exportExcel(){
-    
+
       if(this.filterControl.value != ''){
         this.downloadAllRequests(this.filterControl.value);
       }else{
         this.downloadAllRequests();
       }
-
   }
-
 
   saveAsExcelFile(buffer: any, fileName: string): void {
     const data: Blob = new Blob([buffer], {
@@ -174,6 +176,35 @@ export class MoradoresPanelComponent implements OnInit {
     fs.saveAs(
       data,
       fileName + EXCEL_EXTENSION
+    );
+  }
+
+  file: any;
+
+  loadFile(event: any){
+    if(event.target.files && event.target.files[0]){
+      this.file =event.target.files[0];
+      this.fileForm.patchValue({
+        file: this.file.name
+      })
+    }
+  }
+
+  importFile(){
+    this.fileForm.reset();
+    this.service.importMorador(this.file).subscribe(
+      (success)=>{
+        this.file = null;
+        this.confirmDialog('Importação concluída!');
+        this.ngOnInit();
+      },
+      (error)=>{
+        if(error.error.status===400){
+          this.confirmDialog("Falha")
+        }
+        this.file =null;
+        this.ngOnInit();
+      },()=>{}
     );
   }
 }

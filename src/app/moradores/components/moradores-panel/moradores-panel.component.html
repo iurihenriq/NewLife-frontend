@@ -1,3 +1,39 @@
+<form [formGroup]="fileForm">
+  <div class="file-button">
+    <div class="input-file">
+      <mat-form-field fxFlex="100%" appearance="outline">
+        <mat-label> File </mat-label>
+        <input
+          fxFlex="100%"
+          matInput
+          formControlName="file"
+          (click)="fileInput.click()"
+          readonly="true"
+        />
+        <mat-icon matSuffix (click)="fileInput.click()">attach_file</mat-icon>
+      </mat-form-field>
+      <input
+        type="file"
+        accept=".xlsx"
+        (change)="loadFile($event)"
+        #fileInput
+        hidden
+        fxFlex="86.25%"
+      />
+    </div>
+    <div class="th-wrap-15">
+      <button
+        [disabled]="!file"
+        (click)="importFile();"
+        class="generic-button"
+        mat-raised-button
+        fxFlex="100%">
+        UPLOAD
+      </button>
+    </div>
+  </div>
+</form>
+
 <div class="procurar-cadastrar">
   <mat-form-field fxFill appearance="legacy">
     <mat-label>Pesquisar</mat-label>
@@ -5,10 +41,10 @@
   </mat-form-field>
 
   <div class="botoes">
-    <button mat-raised-button color="primary" (click)="exportExcel()">
+    <button mat-raised-button class="generic-button" (click)="exportExcel()">
       <mat-icon>download</mat-icon>EXPORTAR
     </button>
-    <button mat-raised-button color="primary" routerLink="new">ADICIONAR</button>
+    <button mat-raised-button class="generic-button" routerLink="new">ADICIONAR</button>
   </div>
 </div>
 

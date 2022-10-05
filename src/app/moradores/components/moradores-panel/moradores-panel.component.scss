@@ -24,7 +24,7 @@ th {
 .card-principal {
   margin-top: 80px;
   width: 70%;
-  -webkit-box-shadow: 2px 2px 8px 5px #2222227d; 
+  -webkit-box-shadow: 2px 2px 8px 5px #2222227d;
   box-shadow: 2px 2px 8px 5px #2222227d;
 }
 
@@ -71,4 +71,26 @@ td:nth-child(even){
   margin-top: 4px;
   display: flex;
   justify-content: center;
+}
+
+.generic-button {
+  width: 155px;
+  background-color: $primary;
+  color: #FFFFFF;
+  height: 40px;
+}
+
+.file-button{
+  display: flex;
+  align-items: center;
+  gap: 20px  
+}
+
+.input-file {
+  padding-top: 1.34375em;
+  width: 100%;
+}
+
+.input-file mat-form-field{
+  width: 100%;
 }
