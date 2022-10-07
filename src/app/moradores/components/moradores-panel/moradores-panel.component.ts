@@ -1,4 +1,3 @@
-import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
@@ -7,7 +6,7 @@ import { debounceTime } from 'rxjs';
 import { DialogComponent } from 'src/app/shared/dialog-confirmacao/dialog.component';
 import { DialogOkComponent } from 'src/app/shared/dialog-ok/dialog-ok.component';
 import * as fs from 'file-saver';
-
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { MoradoresService } from '../../services/moradores.service';
 
@@ -20,6 +19,12 @@ const EXCEL_EXTENSION = '.xlsx';
   styleUrls: ['./moradores-panel.component.scss']
 })
 export class MoradoresPanelComponent implements OnInit {
+
+  @ViewChild('fileInput')
+  fileInput!: ElementRef;
+  resetFileUploader() {
+    this.fileInput.nativeElement.value = null;
+  }
 
   fileForm = this.form.group({
     file: ['',Validators.required],
@@ -199,12 +204,16 @@ export class MoradoresPanelComponent implements OnInit {
         this.ngOnInit();
       },
       (error)=>{
-        if(error.error.status===400){
-          this.confirmDialog("Falha")
+        if(error.status===400){
+          this.confirmDialog(error.error.message)
+        }
+        if(error.status===428){
+          this.confirmDialog(error.error.message)
         }
         this.file =null;
         this.ngOnInit();
       },()=>{}
     );
+    this.resetFileUploader();
   }
 }
